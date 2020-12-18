@@ -32,6 +32,7 @@ node {
                             fi
                             done;
                             echo `env | sort`
+                            echo `whoami`
                             echo `/usr/bin/apigtw-ctrl --help`
                             """,
                                         returnStdout: true
