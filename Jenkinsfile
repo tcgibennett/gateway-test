@@ -32,6 +32,7 @@ node {
                             fi
                             done;
                             echo `env | sort`
+                            echo `apigtw-ctrl --help`
                             """,
                                         returnStdout: true
                                 )
