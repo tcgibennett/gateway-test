@@ -1,3 +1,6 @@
+def label = "helm-${UUID.randomUUID().toString()}"
+
+
 def chartPipelineTasks = [:]
 
 properties([buildDiscarder(logRotator(numToKeepStr: '20', artifactNumToKeepStr: '5')),
@@ -14,15 +17,7 @@ podTemplate(label: label, containers: [
         serviceAccount: 'helm-charts-service-account') {
 
     node(label) {
-        def repo = checkout scm
-        def gitBranch = repo.GIT_BRANCH
-        def gitCommit = repo.GIT_COMMIT
-        def shortGitCommit = "${gitCommit[0..10]}"
 
-        def artifactory = Artifactory.server 'talendregistry-onprem'
-        artifactory.credentialsId = 'artifactory-datapwn-credentials'
-
-        notifyMessengers()
 
         // array of changed charts (folder), empty by default
         def changedCharts = null
