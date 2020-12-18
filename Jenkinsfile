@@ -31,7 +31,7 @@ node {
                                 echo \${PWD}/\${oas};
                             fi
                             done;
-                            /usr/lib/golang/bin/apigtw-ctrl;
+                            apigtw-ctrl --help;
                             """,
                                         returnStdout: true
                                 )
