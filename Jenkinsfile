@@ -31,7 +31,7 @@ node {
                                 echo \${PWD}/\${oas};
                             fi
                             done;
-                            go version
+                            echo `go version`
                             """,
                                         returnStdout: true
                                 )
