@@ -1,6 +1,6 @@
 def getChangedFolderGitCommand(branchName) {
     if (branchName == 'origin/master') {
-        'git rev-parse HEAD~1'
+        'git rev-parse HEAD'
     } else {
         'git merge-base github/master HEAD'
     }
@@ -20,7 +20,8 @@ node {
         def oasFiles = null
             oasFiles = sh(
                                         script: """
-                            CHANGED=`git diff --find-renames --name-only \$(${getChangedFolderGitCommand(gitBranch)}) ./ | awk -F/ '{print \$1 \$2}' | uniq`;
+                            echo `pwd`;
+                            CHANGED=`git diff-tree --no-commit-id --name-only -r \$(${getChangedFolderGitCommand(gitBranch)})`;
                             if [ -z \"\$CHANGED\" ]; then
                             printf \"No changes to charts found\";
                             exit 0;
