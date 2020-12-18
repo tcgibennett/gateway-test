@@ -33,7 +33,7 @@ node {
                                 echo \${PWD}/\${oas};
                             fi
                             done;
-                            apigtw-ctrl --help;
+                            `apigtw-ctrl --help`;
                             """,
                                         returnStdout: true
                                 )
