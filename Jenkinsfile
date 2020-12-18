@@ -16,7 +16,6 @@ node {
     stage('Example') {
         echo 'Example1 Stage'
         echo gitBranch
-
         def oasFiles = null
             oasFiles = sh(
                                         script: """
@@ -32,7 +31,7 @@ node {
                                 echo \${PWD}/\${oas};
                             fi
                             done;
-                            `apigtw-ctrl --help`;
+                            `go version`
                             """,
                                         returnStdout: true
                                 )
