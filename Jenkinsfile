@@ -15,7 +15,7 @@ node {
     
     stage('Example') {
         echo 'Example1 Stage'
-        echo env.BRANCH_NAME
+        echo gitBranch
 
         def changedCharts = null
         withCredentials([usernamePassword(credentialsId: 'tcgibennett', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
