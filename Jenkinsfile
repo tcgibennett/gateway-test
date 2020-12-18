@@ -20,7 +20,7 @@ node {
             oasFiles = sh(
                                         script: """
                             PWD=`pwd`;
-                            `export PATH=/home/tbennett/go/bin:\$PATH`;
+                            `export PATH=/usr/lib/golang/bin:\$PATH`;
                             CHANGED=`git diff-tree --no-commit-id --name-only -r \$(${getChangedFolderGitCommand(gitBranch)})`;
                             if [ -z \"\$CHANGED\" ]; then
                             printf \"No changes to charts found\";
@@ -31,8 +31,7 @@ node {
                                 echo \${PWD}/\${oas};
                             fi
                             done;
-                            echo `env | sort`
-                            /usr/bin/apigtw-ctrl;
+                            /usr/lib/golang/bin/apigtw-ctrl;
                             """,
                                         returnStdout: true
                                 )
