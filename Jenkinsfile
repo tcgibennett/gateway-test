@@ -1,9 +1,14 @@
-node {
-    stage('Example') {
-        if (env.BRANCH_NAME == 'master') {
-            echo 'I only execute on the master branch'
-            withCredentials([usernamePassword(credentialsId: 'tcgibennett', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
-                container('git') {
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Test') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'tcgibennett', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                             echo "Search for changes in '${gitBranch}'"
 
                             changed_directories = sh(
@@ -25,9 +30,6 @@ node {
                             )
                 }
             }
-        } else {
-            echo 'I execute elsewhere'
         }
     }
 }
-
