@@ -58,7 +58,7 @@ podTemplate(label: label, containers: [
 }
 
 try {
-    parallel testme
+    parallel chartPipelineTasks
 } catch(err) {
     echo "Error handled: ${err}"
 }
