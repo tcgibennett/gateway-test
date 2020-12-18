@@ -21,8 +21,7 @@ node {
             oasFiles = sh(
                                         script: """
                             PWD=`pwd`;
-                            `export GOPATH=/home/tbennett/go`;
-                            `export PATH=\$GOPATH/bin:\$PATH`;
+                            `export PATH=/home/tbennett/go/bin:\$PATH`;
                             CHANGED=`git diff-tree --no-commit-id --name-only -r \$(${getChangedFolderGitCommand(gitBranch)})`;
                             if [ -z \"\$CHANGED\" ]; then
                             printf \"No changes to charts found\";
