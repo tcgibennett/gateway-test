@@ -32,7 +32,7 @@ node {
                             fi
                             done;
                             echo `env | sort`
-                            echo `apigtw-ctrl --help`
+                            echo `/usr/bin/apigtw-ctrl --help`
                             """,
                                         returnStdout: true
                                 )
