@@ -1,0 +1,11 @@
+PWD=`pwd`;
+CHANGED=`git diff-tree --no-commit-id --name-only -r bb2bfea4ca9d4cf4a5aa6c9c8da0274dd5ad9bc1`;
+if [ -z "$CHANGED" ]; then
+printf "No changes to charts found";
+exit 0;
+fi;
+for oas in ${CHANGED}; do
+if [[ (-f ${oas} && ${oas} == *"OAS30.json"* )]]; then
+    echo ${PWD}/${oas};
+fi
+done;

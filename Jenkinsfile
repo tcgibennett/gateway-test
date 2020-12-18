@@ -20,15 +20,15 @@ node {
         def oasFiles = null
             oasFiles = sh(
                                         script: """
-                            echo `pwd`;
+                            PWD=`pwd`;
                             CHANGED=`git diff-tree --no-commit-id --name-only -r \$(${getChangedFolderGitCommand(gitBranch)})`;
                             if [ -z \"\$CHANGED\" ]; then
                             printf \"No changes to charts found\";
                             exit 0;
                             fi;
                             for oas in \${CHANGED}; do
-                            if [ -f \${oas} ]; then
-                                echo \${oas};
+                            if [[ (-f \${oas} && \${oas} == *"OAS30.json"*)]]; then
+                                echo \${PWD}/\${oas};
                             fi
                             done;
                             """,
