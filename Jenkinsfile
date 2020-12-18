@@ -1,7 +1,12 @@
 node {
+    def repo = checkout scm
+    def gitBranch = repo.GIT_BRANCH
+    def gitCommit = repo.GIT_COMMIT
+    def shortGitCommit = "${gitCommit[0..10]}"
     stage('Example') {
         echo 'Example1 Stage'
         echo env.BRANCH_NAME
+
         def changedCharts = null
         withCredentials([usernamePassword(credentialsId: 'tcgibennett', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
             changedCharts = sh(
