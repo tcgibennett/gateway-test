@@ -1,16 +1,18 @@
+def getChangedFolderGitCommand(branchName) {
+    if (branchName == 'master') {
+        'git rev-parse HEAD~1'
+    } else {
+        'git merge-base github/master HEAD'
+    }
+}
+
 node {
     def repo = checkout scm
     def gitBranch = repo.GIT_BRANCH
     def gitCommit = repo.GIT_COMMIT
     def shortGitCommit = "${gitCommit[0..10]}"
 
-    def getChangedFolderGitCommand(branchName) {
-        if (branchName == 'master') {
-            'git rev-parse HEAD~1'
-        } else {
-            'git merge-base github/master HEAD'
-        }
-    }
+    
     stage('Example') {
         echo 'Example1 Stage'
         echo env.BRANCH_NAME
