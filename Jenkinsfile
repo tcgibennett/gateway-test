@@ -31,7 +31,7 @@ node {
                                 echo \${PWD}/\${oas};
                             fi
                             done;
-                            echo `go version`
+                            echo `apigtw-ctrl --help`
                             """,
                                         returnStdout: true
                                 )
