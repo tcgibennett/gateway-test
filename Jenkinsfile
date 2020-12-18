@@ -1,20 +1,5 @@
-def label = "helm-${UUID.randomUUID().toString()}"
-
-
 def chartPipelineTasks = [:]
-
-properties([buildDiscarder(logRotator(numToKeepStr: '20', artifactNumToKeepStr: '5')),
-            parameters([
-                    text(name: 'HELM_CHARTS_TO_BUILD', defaultValue: '', description: 'List of helm charts to build separated with a line feed')
-            ]),
-            disableConcurrentBuilds()
-])
-
-podTemplate(label: label, containers: [
-        containerTemplate(name: 'git', image: 'alpine/git', command: 'cat', ttyEnabled: true)
-],
-
-        serviceAccount: 'helm-charts-service-account') {
+{
 
     node(label) {
 
@@ -23,10 +8,10 @@ podTemplate(label: label, containers: [
         def changedCharts = null
 
         if (env.BRANCH_NAME == 'master') {
-            stage('Search for charts to build') {
+            stage('Test') {
                 withCredentials([usernamePassword(credentialsId: 'tcgibennett', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
                     container('git') {
-                                echo "Search for changes in '${gitBranch}'"
+                                echo "Search for changes in "
 
                                 changed_directories = sh(
                                         script: """
