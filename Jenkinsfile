@@ -22,6 +22,7 @@ node {
                     """,
                                 returnStdout: true
                         )
+            }
         } else {
             echo 'I execute elsewhere'
         }
