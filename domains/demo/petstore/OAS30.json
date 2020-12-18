@@ -203,7 +203,7 @@
         "description" : "All GET methods are public, meaning that *you can read all the data*. Write operations require authentication and therefore are forbidden to the general public."
       },
       "Public" : {
-        "type" : "https",
+        "type" : "htt",
         "scheme" : "basic"
       }
     }
