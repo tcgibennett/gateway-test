@@ -20,7 +20,7 @@ node {
         def oasFiles = null
             oasFiles = sh(
                                         script: """
-                            CHANGED=`git diff --find-renames --name-only \$(${getChangedFolderGitCommand(gitBranch)}) ./ | awk -F/ '{print \$1"/"\$2}' | uniq`;
+                            CHANGED=`git diff --find-renames --name-only \$(${getChangedFolderGitCommand(gitBranch)}) ./ | awk -F/ '{print \$1 \$2}' | uniq`;
                             if [ -z \"\$CHANGED\" ]; then
                             printf \"No changes to charts found\";
                             exit 0;
