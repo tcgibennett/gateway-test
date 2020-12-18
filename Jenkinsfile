@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                sh(
+                tv = sh(
                     script: """
                      printf \"Hello Test\";
                     """,
