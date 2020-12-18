@@ -1,9 +1,9 @@
 def chartPipelineTasks = [:]
 {
 
-    node(label) {
+    node() {
 
-
+        agent any
         // array of changed charts (folder), empty by default
         def changedCharts = null
 
@@ -38,7 +38,7 @@ def chartPipelineTasks = [:]
 }
 
 try {
-    parallel chartPipelineTasks
+    chartPipelineTasks
 } catch(err) {
     echo "Error handled: ${err}"
 }
