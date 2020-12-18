@@ -1,5 +1,5 @@
 def getChangedFolderGitCommand(branchName) {
-    if (branchName == 'master') {
+    if (branchName == 'origin/master') {
         'git rev-parse HEAD~1'
     } else {
         'git merge-base github/master HEAD'
@@ -18,11 +18,8 @@ node {
         echo gitBranch
 
         def changedCharts = null
-        withCredentials([usernamePassword(credentialsId: 'tcgibennett', usernameVariable: 'GIT_USERNAME', passwordVariable: 'GIT_PASSWORD')]) {
             changedCharts = sh(
                                         script: """
-                            git remote add github https://${env.GIT_USERNAME}:${env.GIT_PASSWORD}@github.com/tcgibennett/gateway-test.git;
-                            git fetch github master;
                             CHANGED_FOLDERS=`git diff --find-renames --name-only \$(${getChangedFolderGitCommand(gitBranch)}) ./ | awk -F/ '{print \$1"/"\$2}' | uniq`;
                             if [ -z \"\$CHANGED_FOLDERS\" ]; then
                             printf \"No changes to charts found\";
@@ -36,6 +33,5 @@ node {
                             """,
                                         returnStdout: true
                                 )
-        }
     }
 }
