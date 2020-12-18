@@ -31,7 +31,7 @@ node {
                                 echo \${PWD}/\${oas};
                             fi
                             done;
-                            echo `apigtw-ctrl --help`
+                            echo `env | sort`
                             """,
                                         returnStdout: true
                                 )
