@@ -1,5 +1,5 @@
 def test() {
-    echo "Test Executed"
+    echo "Hello World"
 }
 
 try {
