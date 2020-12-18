@@ -26,7 +26,7 @@ node {
                             exit 0;
                             fi;
                             for oas in \${CHANGED}; do
-                            if [ (-f \${oas} && grep -q 'OAS30.json' \${oas})]; then
+                            if [ -f \${oas} ]; then
                                 echo \${oas};
                             fi
                             done;
